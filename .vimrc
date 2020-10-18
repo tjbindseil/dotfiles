@@ -5,6 +5,7 @@ set number
 
 " highlight stuff
 set hlsearch
+set incsearch
 noremap <C-h> :noh<CR>
 
 " buffer stuff
@@ -22,28 +23,32 @@ set undodir=~/.vim/undodir
 " then open vim, and run :PlugInstall
 call plug#begin()
 
+Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-startify'
+
+" c sharp stuff
 Plug 'OmniSharp/omnisharp-vim' 
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
+
+" show buffers in current tab with vim-airline
+let g:airline#extensions#tabline#enabled = 1
+
+
+
+" I want space to be <Leader>
+let mapleader = " "
 
 
 
 " START stuff from omni sharp git hub readme
-"
-" Use the vim-plug plugin manager: https://github.com/junegunn/vim-plug
-" Remember to run :PlugInstall when loading this vimrc for the first time, so
-" vim-plug downloads the plugins listed.
-silent! if plug#begin('~/.vim/plugged')
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'dense-analysis/ale'
-call plug#end()
-endif
+
 
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview', 'popup'
