@@ -126,6 +126,7 @@ set -o vi
 alias init='sed -i  s/localhost/0.0.0.0/g Properties/launchSettings.json'
 
 alias dr='dotnet run'
+alias dt='dotnet test'
 alias db='dotnet build'
 alias dc='dotnet clean'
 
@@ -141,3 +142,15 @@ alias vi='vim'
 # curl stuff
 # curl -X POST -H "Content-Type: application/json" -d '{ "username": "test", "password": "test" }' http://localhost:8080/users/authenticate
 # curl -H 'Accept: application/json' -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1OTAzMzA0NzUsImV4cCI6MTU5MDkzNTI3NSwiaWF0IjoxNTkwMzMwNDc1fQ.fPUnywPhm4KyN_-LJ5bn_d0EVpKr_MvIhahl55aKYxs" http://localhost:8080/users
+
+export EDITOR=vi
+export VISUAL="$EDITOR"
+
+export AS='/home/tj/projects_dotnet/authentication_service'
+export FI='/home/tj/projects_python/flask-intro'
+export PL='/home/tj/projects_python/pythonlogin'
+
+alias scr='vi ~/stuff/scratch'
+
+# to start a venv, after making one with 'python3 -m venv ./'
+alias venv='source bin/activate'
