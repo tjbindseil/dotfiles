@@ -42,12 +42,14 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" autoformat tsx
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-
 Plug 'sbdchd/neoformat'
 
+" not sure if need the following, but they were resetting the compile option
+" and making it hard to do lint via quickfix
+" autoformat tsx
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" 
 call plug#end()
 
 """""""""""""" vim-airline settings """"""""""""""""""""""""""""
@@ -158,3 +160,8 @@ autocmd BufWritePre *.json Neoformat
 " but, to make this work, I modified the compiler that was installed,
 " ie, I modified /Users/tj/nvim-macos/share/nvim/runtime/compiler/eslint.vim
 " such that it runs my lint script defined in package.json
+compiler! eslint
+
+" looks like there is one for junit too! TODO write shortcuts (rl = run lint, rt
+" = run test, etc) that are :compiler! eslint <CR> :make <CR> etc
+" compiler! junit
