@@ -46,6 +46,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
+Plug 'sbdchd/neoformat'
+
 call plug#end()
 
 """""""""""""" vim-airline settings """"""""""""""""""""""""""""
@@ -64,6 +66,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> ga :CocCommand tsserver.executeAutofix<CR>
+nmap <silent> gn <Plug>(coc-rename)
+
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -85,7 +90,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 
 func! s:my_colors_setup() abort
-  highlight CocFloating ctermbg=white" For background color
+  highlight CocFloating ctermbg=blue" For background color
   highlight CocErrorFloat ctermfg=black " For text color
 endfunc
 
@@ -125,3 +130,18 @@ endfunction
 
 " with new keyboard I keep hitting F1
 noremap <F1> <ESC>
+
+" coc will add the closing paren and i need to skip over it (with shift-tab)
+inoremap <S-Tab> <esc>la
+
+nmap <silent> gc :'<,'>s/^/\/\/ /g<CR>
+
+
+
+" neoformat stuff
+let g:neoformat_try_node_exe = 1 " use prettier from node_modules instead of PATH
+
+" auto run format on save for javascript files
+autocmd BufWritePre *.ts Neoformat
+autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.json Neoformat
