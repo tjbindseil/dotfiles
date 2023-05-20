@@ -145,3 +145,16 @@ let g:neoformat_try_node_exe = 1 " use prettier from node_modules instead of PAT
 autocmd BufWritePre *.ts Neoformat
 autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.json Neoformat
+
+
+" (inspired by
+" https://stackoverflow.com/questions/71085585/eslint-vim-or-neovim-workflow)
+"
+" ok, to run eslint and iterate through issues via the quickfix list:
+" :compiler eslint
+" :make
+" :cn / :cp
+"
+" but, to make this work, I modified the compiler that was installed,
+" ie, I modified /Users/tj/nvim-macos/share/nvim/runtime/compiler/eslint.vim
+" such that it runs my lint script defined in package.json
