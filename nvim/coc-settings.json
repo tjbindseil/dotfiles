@@ -1,0 +1,5 @@
+{
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.suggest.noselect": false,
+    "coc.preferences.suggest.enablePreselect": false
+}
