@@ -1,3 +1,9 @@
+" lua require('basic')
+"  lua <<EOF
+"  print('hello from lua')
+"  TODO remove and recreate Session.vim
+"  EOF
+
 set incsearch
 set ignorecase
 set hlsearch
@@ -44,12 +50,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'sbdchd/neoformat'
 
+Plug 'mileszs/ack.vim'
+
 " not sure if need the following, but they were resetting the compile option
 " and making it hard to do lint via quickfix
 " autoformat tsx
 " Plug 'leafgarland/typescript-vim'
 " Plug 'peitalin/vim-jsx-typescript'
-" 
+"
 call plug#end()
 
 """""""""""""" vim-airline settings """"""""""""""""""""""""""""
@@ -92,11 +100,14 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 
 func! s:my_colors_setup() abort
-  highlight CocFloating ctermbg=blue" For background color
-  highlight CocErrorFloat ctermfg=black " For text color
+  " highlight CocFloating ctermbg=blue" For background color
+  " highlight CocErrorFloat ctermfg=black " For text color
 endfunc
 
 augroup colorscheme_coc_setup | au!
+lua <<EOF
+print('hello from lua')
+EOF
   au VimEnter * call s:my_colors_setup()
 augroup END
 
@@ -148,6 +159,10 @@ autocmd BufWritePre *.ts Neoformat
 autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.json Neoformat
 
+" didn't do anything
+autocmd BufWritePre *.tsx Neoformat
+autocmd BufWritePre *.jsx Neoformat
+
 
 " (inspired by
 " https://stackoverflow.com/questions/71085585/eslint-vim-or-neovim-workflow)
@@ -165,3 +180,10 @@ compiler! eslint
 " looks like there is one for junit too! TODO write shortcuts (rl = run lint, rt
 " = run test, etc) that are :compiler! eslint <CR> :make <CR> etc
 " compiler! junit
+
+" don't scroll cursor to middle of screen upon returning to buffer
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
+
